@@ -5,7 +5,7 @@ from tensorflow import convert_to_tensor
 
 new_size = (256, 256)
 
-cnn = load_model("../cnn")
+cnn = load_model("../cnn_10f3x3_5f5x5_12l2_15ep_bs15_85.26")
 
 def image_to_matrix(im, resize_size):
     im = ImageOps.grayscale(im.resize(resize_size))

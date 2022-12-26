@@ -58,7 +58,11 @@ class Ui_MainWindow(object):
     def MakePrediction(self):
         options = QFileDialog.Options()
         options |= QFileDialog.DontUseNativeDialog
-        fileName, _ = QFileDialog.getOpenFileName(self.predict_btn,"QFileDialog.getOpenFileName()", "","Images (*.jpeg *.jpg *.png *.bmp2)", options=options)
+        fileName = QFileDialog.getOpenFileName(self.predict_btn,"QFileDialog.getOpenFileName()", "","Images (*.jpeg *.jpg *.png *.bmp2)", options=options)
+        if not fileName:
+            return
+        
+        fileName, _ = fileName
         self.pic_displayer.setPixmap(QtGui.QPixmap(fileName))
         prediction = "Пневмония отсутствует" if solver.solve(fileName) == 0 else "Пневмония присутствует"
         mb = QMessageBox()
